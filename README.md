@@ -10,7 +10,7 @@ stores that context in plain Markdown files:
 An agent can continue from the handoff when it has repository access and reads
 the files. This is persistent project context, not automatic model memory.
 
-![How the system works](assets/agent-handoff-diagram.png)
+![How the system works](assets/rumil-agent-handoff-skill.png)
 
 ## What's included
 
@@ -19,12 +19,13 @@ the files. This is persistent project context, not automatic model memory.
 | [`agent-handoff-setup/`](agent-handoff-setup/) | Asks setup questions, then creates the HQ files and a `STATE.md` for each project |
 | [`agent-handoff/`](agent-handoff/) | Provides the daily read, work, checks, state update, handoff verification, and push instructions |
 | [`agent-handoff-setup/templates/`](agent-handoff-setup/templates/) | Contains five Markdown templates that can be used without installing the skills |
+| [`anti-ai-slop/`](anti-ai-slop/) | Audits and rewrites prose to remove AI-sounding language while protecting technical accuracy |
 
 ## Quickstart (Claude Code)
 
 ```bash
 git clone https://github.com/Rlegaspi562/agent-handoff-skill
-cp -r agent-handoff-skill/agent-handoff-setup agent-handoff-skill/agent-handoff ~/.claude/skills/
+cp -r agent-handoff-skill/agent-handoff-setup agent-handoff-skill/agent-handoff agent-handoff-skill/anti-ai-slop ~/.claude/skills/
 ```
 
 Then in Claude Code: *"Set up my agent handoff system."* The setup skill
