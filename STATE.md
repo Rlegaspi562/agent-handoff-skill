@@ -16,4 +16,4 @@ rejected: separate top-level templates/ dir (duplication risk with the skill's b
 ## Open questions
 - Skool funnel CTA placement in README — Rumil to decide
 ## Sync
-last push: pending first publish
+last push: 2026-07-16 | ok (private, PR #1 open)
