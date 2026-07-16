@@ -1,24 +1,22 @@
 ---
 name: agent-handoff
-description: The daily loop for a persistent project-context system (HQ repo + per-project STATE.md, GitHub as the glue). Use at the START of any work session — "where did I leave off?", "pick up where we stopped", "continue the build", "what am I working on?" — and at the END of any session that changed code, made a decision, or hit a blocker: "handoff", "save state", "I'm stopping". If the user has no HQ repo or STATE.md files yet, use agent-handoff-setup instead.
+description: Runs the daily read, work, checks, state update, handoff verification, and push loop for an existing HQ and STATE.md setup. Use when beginning from a saved handoff or ending work that changed code, decisions, blockers, or next actions. Typical requests include "where did I leave off?", "continue the build", "handoff", and "save state". If the required files do not exist, use agent-handoff-setup instead.
 ---
 
-# Agent Handoff — the daily loop
+# Agent Handoff: daily loop
 
-One repeatable route, any AI agent: **read → work → update → test → push**.
-The system's whole promise — persistent project context across agents — holds
-only if every session both starts AND ends with the files. Reading STATE.md
-without rewriting it at the end breaks the chain for the next agent, which
-might be a different tool, a different machine, or the same user next week.
+Follow this sequence: **read, work, run checks, update state, verify the
+handoff, and push**. Continuity depends on participating agents reading the
+latest pushed `STATE.md` and updating it when the session changes project
+state.
 
 ## Session start (read)
 
 1. **Sync.** `git pull` in the project repo (and in HQ if you have it
    locally). Report briefly if the pull isn't a fast-forward.
 2. **Verify connections** the session will need, per HQ's `CONNECTIONS.md`.
-   Troubleshoot failures now — a credential problem discovered mid-task is a
-   session killer. If a fix needs something only the user can issue, ask
-   immediately.
+   Check required credentials before starting dependent work. If only the user
+   can restore access, ask before proceeding with that part of the task.
 3. **Read the map if needed.** Working in a known project: read its root
    `STATE.md` directly. Cross-project question ("what am I working on?"):
    read HQ's `CONTEXT.md` first, then the STATE.md of each relevant project
@@ -34,43 +32,42 @@ might be a different tool, a different machine, or the same user next week.
 
 ## Work
 
-Do the session's work as normal. Two habits matter to the handoff:
+Do the session's work as normal. Track these details while working:
 
-- **Notice decisions as they happen.** "Chose X over Y because Z" and "tried
-  A, failed because B" are the highest-value lines in the whole system —
-  they're what stops the next agent from re-architecting or re-trying dead
-  ends. Track them as you go; they're painful to reconstruct at the end.
-- **Notice what GitHub can't see.** Unpushed branches, running local servers,
-  half-applied migrations, files outside the repo. If it matters to the next
-  session, it must be written into STATE.md, or it's invisible.
+- Record decisions, their rationale, and failed approaches that should not be
+  repeated.
+- Record relevant local-only state, such as unpushed branches, running
+  services, incomplete migrations, or files outside the repository.
 
-## Session end (update → test → push)
+## Session end: test, update, and push
 
 Update STATE.md **unprompted** whenever the session changed code, added or
-removed a blocker, made a decision, or ends waiting on the user. This is part
-of definition-of-done, not a favor.
+removed a blocker, made a decision, changed next actions, or ends waiting on
+the user.
 
-1. **Rewrite** the project's `STATE.md` — rewrite, never append. Keep the
-   format (Progress / Now / Next / Decisions / Open questions / Sync), target
-   2KB. Fold new decisions into `decided/tried/rejected`; replace `## Now`;
-   reorder `## Next` so item 1 is startable cold.
-2. **Test the handoff.** Reread the file as if you were a fresh agent with no
-   conversation history: could you start item 1 of `## Next` from the file
-   alone? If not, it's not done — add the missing path, command, or context.
-3. **Commit** as `state: <one-liner>` in the same batch as the session's code
+1. **Run relevant checks.** Test the code, documentation, or workflow changed
+   during the session. Record any failure that remains.
+2. **Rewrite** the project's `STATE.md`. Replace stale content instead of
+   appending entries. Keep the format (Progress / Now / Next / Decisions /
+   Open questions / Sync) and target 2 KB. Fold new decisions into
+   `decided/tried/rejected`; replace `## Now`; reorder `## Next` so item 1 can
+   begin without conversation history.
+3. **Check the handoff.** Reread the file without relying on the current
+   conversation. Add any path, command, or context needed to begin the first
+   next action.
+4. **Commit** as `state: <one-liner>` in the same batch as the session's code
    commits, and **push**. If the push fails, keep the local commit, set the
-   Sync line to `last push: <date> | FAILED (<reason>)`, tell the user, and
-   move on — never block on a push.
-4. **Merge conflict on STATE.md?** Merge the Next lists, keep the newer Now
+   Sync line to `last push: <date> | FAILED (<reason>)`, create a second local
+   state commit containing that failure record, tell the user, and continue
+   with work that does not require the push.
+5. **Merge conflict on STATE.md?** Merge the Next lists, keep the newer Now
    and Progress, combine Decisions without duplicates, note the merge under
    `tried:`.
 
-## Rules that keep the system honest
+## Repository rules
 
-- Live status never goes in HQ — the map holds stable facts; the truth lives
-  in each project's STATE.md.
-- STATE.md is living decisions, not a changelog. A list of changed files
-  helps nobody; the *why* does.
-- Long-lived feature branches fork the handoff. Flag any branch that has
-  outlived a couple of sessions; merge it promptly or declare it the only
-  place its subsystem changes.
+- Keep current project status in the project repository, not in HQ.
+- Record decisions and rationale, not only changed files.
+- Long-lived branches can produce conflicting `STATE.md` versions. Avoid
+  changing the same subsystem independently on both the feature and default
+  branches.

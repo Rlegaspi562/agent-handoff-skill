@@ -1,69 +1,67 @@
 # Agent Handoff Skill
 
-**Persistent project context across AI agents.** Every AI session starts with
-amnesia. The fix isn't a smarter agent — it's a system: a map repo, a
-`STATE.md` in every project, and GitHub as the glue. Any agent on any machine
-picks up where the last one left off.
+AI sessions do not share dependable project context by default. This project
+stores that context in plain Markdown files:
 
-![How the system works](assets/agent-handoff-diagram.png)
+- An HQ repository lists your projects, machines, and shared instructions.
+- Each project has a `STATE.md` with current work, next actions, and decisions.
+- Git carries the latest pushed handoff between machines and agents.
 
-Everyone else's memory setup is locked to one tool — a vault, a plugin, a
-prompt. This system asks one thing of an agent: **can it read and write a git
-repo.** Tools churn; the memory stays. (To be precise: this is persistent
-*project context*, not automatic model memory — it works because agents read
-and write these files every session, and the skills make that non-optional.)
+An agent can continue from the handoff when it has repository access and reads
+the files. This is persistent project context, not automatic model memory.
 
-## What's in the box
+![How the system works](assets/rumil-agent-handoff-skill.png)
+
+## What's included
 
 | Piece | What it does |
 |---|---|
-| [`agent-handoff-setup/`](agent-handoff-setup/) | One-time guided setup: interviews you, then scaffolds your HQ repo (CONTEXT.md, AGENTS.md, CONNECTIONS.md) and a STATE.md in each project |
-| [`agent-handoff/`](agent-handoff/) | The daily loop: read → work → update → test → push. Starts every session where you left off; ends every session with a rewritten STATE.md |
-| [`agent-handoff-setup/templates/`](agent-handoff-setup/templates/) | The durable payload — five markdown templates that work with ANY agent, no skills required |
+| [`agent-handoff-setup/`](agent-handoff-setup/) | Asks setup questions, then creates the HQ files and a `STATE.md` for each project |
+| [`agent-handoff/`](agent-handoff/) | Provides the daily read, work, checks, state update, handoff verification, and push instructions |
+| [`agent-handoff-setup/templates/`](agent-handoff-setup/templates/) | Contains five Markdown templates that can be used without installing the skills |
+| [`anti-ai-slop/`](anti-ai-slop/) | Audits and rewrites prose to remove AI-sounding language while protecting technical accuracy |
 
 ## Quickstart (Claude Code)
 
 ```bash
 git clone https://github.com/Rlegaspi562/agent-handoff-skill
-cp -r agent-handoff-skill/agent-handoff-setup agent-handoff-skill/agent-handoff ~/.claude/skills/
+cp -r agent-handoff-skill/agent-handoff-setup agent-handoff-skill/agent-handoff agent-handoff-skill/anti-ai-slop ~/.claude/skills/
 ```
 
 Then in Claude Code: *"Set up my agent handoff system."* The setup skill
-interviews you and builds everything. From then on, start sessions with
-*"where did I leave off?"* and end them with *"handoff"*.
+asks for the required project details and creates the initial files. In later
+sessions, use *"where did I leave off?"* to read the handoff and *"handoff"* to
+update it.
 
-## Not using Claude? Good — that's the point
+## Using another agent
 
-The skills are conveniences; the files are the system. Grab the
-[templates](agent-handoff-setup/templates/), fill them in, push them, and add
-this to any agent that can read your GitHub:
+The files do not require Claude Code. Copy the
+[templates](agent-handoff-setup/templates/), fill them in, and push them to a
+Git remote. Then give this instruction to an agent with repository access:
 
-> Before anything: read `<your-hq-repo>` — CONTEXT.md first, then AGENTS.md,
-> then read STATE.md of the project I name. Then tell me where I left off.
-> When we finish, rewrite that STATE.md, commit it as "state: one-liner",
-> and push.
+> First, read `<your-hq-repo>`. Read `CONTEXT.md`, then `AGENTS.md`, followed
+> by the named project's `STATE.md`. Tell me where the project stopped. At the
+> end, update `STATE.md` if the session changed code, blockers, decisions, or
+> next actions, or stops waiting on my input. If you can edit the checkout,
+> commit it as `state: <one-liner>`. If the remote allows writes, push it.
 
-Cursor rules, Codex AGENTS.md, and CLAUDE.md one-liners are in
+Optional reminders for Cursor, Codex, and Claude Code are in
 [`PROMPT.template.md`](agent-handoff-setup/templates/PROMPT.template.md).
 
-## The rules that make it work
+## Operating rules
 
-1. **The map never lies about the territory.** HQ holds stable facts only;
-   live status lives in each project's STATE.md.
-2. **Updating STATE.md is definition-of-done**, not a favor. Any session that
-   changes code, makes a decision, or hits a blocker rewrites the file in the
-   same commit batch.
-3. **Rewrite, don't append.** STATE.md targets 2KB. It's a living handoff,
-   not a changelog.
-4. **Record why, not what.** "Chose X over Y because Z" saves the next agent
-   from re-architecting; "tried A, failed because B" saves it from dead ends.
+1. Keep current project status in each project's `STATE.md`, not in HQ.
+2. Update `STATE.md` when work changes code, decisions, blockers, or next
+   actions.
+3. Replace stale information instead of appending a history. Keep the file
+   near 2 KB.
+4. Record decisions, rationale, and failed approaches that affect future work.
+5. Commit and push the handoff when Git write access is available.
 
 ## Start small
 
-One `STATE.md` in one repo. Make updating it definition-of-done. Add the HQ
-map when you have a second project. That's it — no database, no vendor,
-no API.
-
----
+Start with one `STATE.md` in one repository. Add an HQ repository when you
+need to track more than one project. The file-based setup does not require a
+database or a separate API.
 
 MIT licensed. Built by [Rumil Legaspi](https://github.com/Rlegaspi562).
