@@ -16,4 +16,4 @@ rejected: adding a VIDEO.md marketing file here before Rumil asks for it
 ## Open questions
 - Skool call-to-action placement in README
 ## Sync
-last push: 2026-07-17 | pending
+last push: 2026-07-17 | ok
