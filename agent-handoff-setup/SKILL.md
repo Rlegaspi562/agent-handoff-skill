@@ -53,7 +53,7 @@ not apply.
 Build the HQ repo:
 
 ```
-hq/
+hq-entry-point/
 ├── README.md          (what this repo is + the onboarding prompt, from PROMPT.template.md)
 ├── CONTEXT.md         (from CONTEXT.template.md; user, machines, registry)
 ├── AGENTS.md          (from AGENTS.template.md; shared instructions)
