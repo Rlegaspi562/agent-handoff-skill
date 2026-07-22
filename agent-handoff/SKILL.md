@@ -1,9 +1,9 @@
 ---
 name: agent-handoff
-description: Runs the daily read, work, checks, state update, handoff verification, and push loop for an existing HQ and STATE.md setup. Use when beginning from a saved handoff or ending work that changed code, decisions, blockers, or next actions. Typical requests include "where did I leave off?", "continue the build", "handoff", and "save state". If the required files do not exist, use agent-handoff-setup instead.
+description: Runs the work-session workflow for an existing HQ and STATE.md setup. It reads context, supports the work, runs checks, updates state, verifies the handoff, and pushes. Use when beginning from a saved handoff or ending work that changed code, decisions, blockers, or next actions. Typical requests include "where did I leave off?", "continue the build", "handoff", and "save state". If the required files do not exist, use agent-handoff-setup instead.
 ---
 
-# Agent Handoff: daily loop
+# Agent Handoff
 
 Follow this sequence: **read, work, run checks, update state, verify the
 handoff, and push**. Continuity depends on participating agents reading the

@@ -4,7 +4,7 @@ phase: live | percent: 100
 done: public template repo with two skills (agent-handoff-setup, agent-handoff), five templates, and the README diagram
 blocked: none
 ## Now
-Current files consistently describe the repo as the HQ entry point: the setup interview suggests `hq-entry-point`, its scaffold uses that directory name, and the templates contain no em dashes. Orient remains step 0 of the daily loop. The public package intentionally has no repo-local private HQ pointer files.
+Current files use the concrete skill names only: `agent-handoff-setup` creates the system once, while `agent-handoff` handles a work session from context pickup through handoff. The misleading scheduled-sounding label was removed. Orient remains step 0 of `agent-handoff`.
 ## Next
 1. Tag a release so the release page matches the merged tree
 2. Optional: description trigger checks on the two skills
