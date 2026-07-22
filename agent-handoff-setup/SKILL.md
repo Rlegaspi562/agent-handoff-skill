@@ -37,9 +37,9 @@ Ask conversationally and in batches instead of sending a long questionnaire:
 4. **Connections.** Besides GitHub, what does an agent need to touch? (Issue
    tracker, local dashboard, database, deploy target.) For each: how to verify
    it works, where credentials live. Never ask for credential values.
-5. **HQ repo name.** Suggest `hq` because it is short, and describe it as the
-   "HQ entry point" in the generated files so its role stays visible. Ask
-   whether it should use an existing repository or a new one.
+5. **HQ repo name.** Suggest `hq-entry-point` so the repo's role is visible
+   in its own name, and describe it as the "HQ entry point" in the generated
+   files. Ask whether it should use an existing repository or a new one.
 
 If the user has already told you some of this in the conversation, don't
 re-ask it. Confirm inferred details and ask only for missing information.
