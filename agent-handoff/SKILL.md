@@ -12,6 +12,17 @@ state.
 
 ## Session start (read)
 
+0. **Orient.** Before touching files, determine which position you are in:
+   - **Inside a registered project:** continue with the normal loop below.
+   - **Outside any project, or a cross-project question:** read the HQ (entry
+     point) repo's `CONTEXT.md` first. Do not create or modify project files
+     from unregistered ground.
+   - **Creating a new repository, or inside a repo the HQ registry does not
+     list:** this is registration, not just building. Before the first commit,
+     create the repo's `STATE.md` (from `templates/STATE.template.md`), add a
+     registry entry to HQ's `CONTEXT.md` (stable facts only), and add any
+     tool-specific pointer files the user uses (see `PROMPT.template.md`).
+     Then continue with the build.
 1. **Sync.** `git pull` in the project repo (and in HQ if you have it
    locally). Report briefly if the pull isn't a fast-forward.
 2. **Verify connections** the session will need, per HQ's `CONNECTIONS.md`.

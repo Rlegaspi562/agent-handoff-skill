@@ -12,8 +12,9 @@ model memory.
 
 The system has three parts:
 
-1. **HQ repository:** Stores stable information about the user, machines,
-   projects, and shared instructions. Current project status stays elsewhere.
+1. **HQ (entry point) repository:** Stores stable information about the user,
+   machines, projects, and shared instructions. It is where any agent, on any
+   platform, starts reading. Current project status stays elsewhere.
 2. **STATE.md:** Stores current work, next actions, decisions, and blockers in
    each project repository. Update it when project state changes.
 3. **Shared Git remote:** Stores pushed commits. Agents need repository access,
@@ -36,8 +37,9 @@ Ask conversationally and in batches instead of sending a long questionnaire:
 4. **Connections.** Besides GitHub, what does an agent need to touch? (Issue
    tracker, local dashboard, database, deploy target.) For each: how to verify
    it works, where credentials live. Never ask for credential values.
-5. **HQ repo name.** Suggest `hq` because it is short. Ask whether it should
-   use an existing repository or a new one.
+5. **HQ repo name.** Suggest `hq` because it is short, and describe it as the
+   "HQ entry point" in the generated files so its role stays visible. Ask
+   whether it should use an existing repository or a new one.
 
 If the user has already told you some of this in the conversation, don't
 re-ask it. Confirm inferred details and ask only for missing information.

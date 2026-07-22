@@ -9,13 +9,22 @@ Applies to every registered project (see CONTEXT.md).
 1. **Session start:** read the project's `STATE.md` first. For cross-project
    questions ("what am I working on?"), read `CONTEXT.md` in this repo, then
    the relevant STATE.md files.
+1a. **Orient before acting.** If you are outside any registered project, read
+   `CONTEXT.md` in this HQ (entry point) repo before creating or modifying
+   anything. Never create project files from unregistered ground.
+1b. **New repository = register it, before the first commit.** Every new repo
+   gets a root `STATE.md` (from `templates/STATE.template.md`, honest phase —
+   a new repo is `idea` or `build`, never `live`) and a registry entry in this
+   repo's `CONTEXT.md` (stable facts only). Add tool-specific pointer files if
+   the user uses them. A repo the registry does not list is invisible to every
+   other agent; registration is what makes handoff possible.
 2. **Update STATE.md.** Update the file when a session changes code, blockers,
    decisions, or next actions, or stops pending user input. If you can edit
    the checkout, commit the update. If the remote allows writes, push it. If
    pushing fails, keep the local commit, set the Sync line to
    `last push: <date> | FAILED (<reason>)`, and create a second local state
    commit containing that failure record.
-3. **Keep current status out of HQ.** Registry entries hold stable facts only,
+3. **Keep current status out of the HQ entry point repo.** Registry entries hold stable facts only,
    such as repository, local path, and a one-line description. Active
    branches, PRs, and blockers belong in each project's `STATE.md`.
 4. **Record useful decisions.** Include rationale, failed attempts that should
