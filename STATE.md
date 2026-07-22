@@ -4,9 +4,9 @@ phase: live | percent: 100
 done: public template repo with two skills (agent-handoff-setup, agent-handoff), five templates, and the README diagram
 blocked: none
 ## Now
-Branch feat/orient-and-new-repo-rule (PR pending Rumil's review) adds the Orient step 0 to the daily loop, an Orient + new-repo-registration rule to AGENTS.template.md, and "HQ (entry point)" naming across README, setup skill, and templates. Origin: 2026-07-21 gap found live - an agent created a new repo from unregistered ground and skipped registration; neither skill covered "new project" or "locate yourself first".
+v1.2 changes merged with Rumil's approval (2026-07-22): Orient step 0 in the daily loop, Orient + new-repo-registration rules in AGENTS.template.md, "HQ (entry point)" naming across README/skills/templates, and the setup skill now suggests `hq-entry-point` as the repo name. Origin: 2026-07-21 gap found live - an agent created a new repo from unregistered ground and skipped registration.
 ## Next
-1. Rumil reviews and merges the PR, then tag a release
+1. Tag a release so the release page matches the tree
 2. Optional: description trigger checks on the two skills
 ## Decisions
 decided: the public package carries only the handoff product (two skills + templates); repo STATE.md stays limited to product state; the writing-style skill lives outside this package
