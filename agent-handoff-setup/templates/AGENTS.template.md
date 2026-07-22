@@ -13,7 +13,7 @@ Applies to every registered project (see CONTEXT.md).
    `CONTEXT.md` in this HQ (entry point) repo before creating or modifying
    anything. Never create project files from unregistered ground.
 1b. **New repository = register it, before the first commit.** Every new repo
-   gets a root `STATE.md` (from `templates/STATE.template.md`, honest phase —
+   gets a root `STATE.md` (from `templates/STATE.template.md`, honest phase -
    a new repo is `idea` or `build`, never `live`) and a registry entry in this
    repo's `CONTEXT.md` (stable facts only). Add tool-specific pointer files if
    the user uses them. A repo the registry does not list is invisible to every
