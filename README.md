@@ -3,7 +3,8 @@
 AI sessions do not share dependable project context by default. This project
 stores that context in plain Markdown files:
 
-- An HQ repository lists your projects, machines, and shared instructions.
+- An HQ (entry point) repository lists your projects, machines, and shared
+  instructions. It is the single place any agent starts from.
 - Each project has a `STATE.md` with current work, next actions, and decisions.
 - Git carries the latest pushed handoff between machines and agents.
 
@@ -49,7 +50,8 @@ Optional reminders for Cursor, Codex, and Claude Code are in
 
 ## Operating rules
 
-1. Keep current project status in each project's `STATE.md`, not in HQ.
+1. Keep current project status in each project's `STATE.md`, not in the HQ
+   entry point repo.
 2. Update `STATE.md` when work changes code, decisions, blockers, or next
    actions.
 3. Replace stale information instead of appending a history. Keep the file
@@ -59,8 +61,8 @@ Optional reminders for Cursor, Codex, and Claude Code are in
 
 ## Start small
 
-Start with one `STATE.md` in one repository. Add an HQ repository when you
-need to track more than one project. The file-based setup does not require a
+Start with one `STATE.md` in one repository. Add an HQ (entry point)
+repository when you need to track more than one project. The file-based setup does not require a
 database or a separate API.
 
 MIT licensed. Built by [Rumil Legaspi](https://github.com/Rlegaspi562).

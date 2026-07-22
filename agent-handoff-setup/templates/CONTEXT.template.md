@@ -17,8 +17,9 @@ to facts an agent needs to understand and work on these projects.>
 - local: <absolute path> (<machine-name>)
 
 ## Handoff model
-- HQ stores stable project, machine, and instruction information. It does not
-  carry current project status.
+- This HQ (entry point) repo stores stable project, machine, and instruction
+  information. It is where any agent starts reading. It does not carry current
+  project status.
 - Each project stores current status in a root `STATE.md`: Progress, Now, Next,
   Decisions, Open questions, and Sync.
 - An instructed agent with repository access can read the latest pushed HQ
