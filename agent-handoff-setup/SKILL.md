@@ -1,6 +1,6 @@
 ---
 name: agent-handoff-setup
-description: Creates files for passing project context between agents through Git. Use when the user wants an HQ project index, per-project STATE.md files, or a setup that reduces repeated project explanations between sessions, tools, or machines. Typical requests include "set up my HQ", "install the handoff system", and "my AI keeps forgetting what I'm working on". For daily use after setup, use agent-handoff instead.
+description: Creates files for passing project context between agents through Git. Use when the user wants an HQ project index, per-project STATE.md files, or a setup that reduces repeated project explanations between sessions, tools, or machines. Typical requests include "set up my HQ", "install the handoff system", and "my AI keeps forgetting what I'm working on". For ongoing project sessions after setup, use agent-handoff instead.
 ---
 
 # Agent Handoff Setup
@@ -22,7 +22,7 @@ The system has three parts:
    changes made elsewhere.
 
 Use this skill for initial setup or later restructuring. The separate
-`agent-handoff` skill handles daily work and should not repeat the setup
+`agent-handoff` skill handles ongoing project sessions and should not repeat the setup
 interview.
 
 ## Step 1: Interview
