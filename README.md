@@ -18,7 +18,7 @@ the files. This is persistent project context, not automatic model memory.
 | Piece | What it does |
 |---|---|
 | [`agent-handoff-setup/`](agent-handoff-setup/) | Asks setup questions, then creates the HQ files and a `STATE.md` for each project |
-| [`agent-handoff/`](agent-handoff/) | Provides the daily read, work, checks, state update, handoff verification, and push instructions |
+| [`agent-handoff/`](agent-handoff/) | Handles the session workflow: read context, work, run checks, update state, verify the handoff, and push |
 | [`agent-handoff-setup/templates/`](agent-handoff-setup/templates/) | Contains five Markdown templates that can be used without installing the skills |
 
 ## Quickstart (Claude Code)
