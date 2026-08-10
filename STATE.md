@@ -4,10 +4,10 @@ phase: live | percent: 100
 done: public package with two validated skills, Codex UI metadata, five reusable templates, cross-platform setup, an explicit security model, private-by-default HQ guidance, and the README diagram
 blocked: none
 ## Now
-Public-readiness work is complete. The README now positions Agent Handoff as a Git-backed continuity layer, separates the public package from each user's private HQ and project state, and documents Claude Code, Codex, Cursor, and generic-agent use. Setup and ongoing handoffs explicitly minimize personal data and redact sensitive values.
+Public-readiness PR #8 is merged. The README positions Agent Handoff as a Git-backed continuity layer, separates the public package from each user's private HQ and project state, and documents Claude Code, Codex, Cursor, and generic-agent use. Setup and ongoing handoffs explicitly minimize personal data and redact sensitive values. GitHub recognizes Codex as a contributor.
 ## Next
-1. Tag and publish the public-readiness release after the branch reaches main
-2. Use the short problem/how-it-works/link reply when sharing the repository publicly
+1. Share the short problem/how-it-works/link reply in the relevant Reddit discussion
+2. Collect real usage feedback before deciding whether to add optional client-specific enforcement hooks
 ## Decisions
 decided: keep one public distribution package and separate private user installations rather than maintaining two copies; generated HQ repositories default to private; the root STATE.md covers only this public package; hooks remain optional client adapters; public author credit and the personal workflow diagram remain intentionally
 tried: both folders passed the skill-creator validator and fresh-agent setup/resume simulations; current-tree and Git-history secret-pattern scans passed; local Markdown links, skill frontmatter, diff whitespace, and image metadata passed; setup, documentation, and templates were reviewed as a first-time installation flow
