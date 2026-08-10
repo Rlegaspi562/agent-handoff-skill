@@ -29,7 +29,10 @@ Applies to every registered project (see CONTEXT.md).
    branches, PRs, and blockers belong in each project's `STATE.md`.
 4. **Record useful decisions.** Include rationale, failed attempts that should
    not be repeated, and enough context to continue. Do not use `STATE.md` as a
-   file-change log.
+   file-change log. Never store passwords, API keys, tokens, private keys,
+   cookies, authorization headers, customer data, or private conversation
+   transcripts in handoff files. Record only the safe location or identifier
+   needed to retrieve a secret through the approved connection workflow.
 5. **STATE.md format** (target <=2048 bytes, rewritten not appended): see
    `templates/STATE.template.md`: Progress, Now, Next, Decisions, Open
    questions, and Sync.

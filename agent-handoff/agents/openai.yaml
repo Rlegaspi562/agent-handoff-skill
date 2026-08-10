@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Handoff"
+  short_description: "Resume and save project state across agents"
+  default_prompt: "Use $agent-handoff to read my saved project state and continue the work."

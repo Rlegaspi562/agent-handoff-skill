@@ -14,7 +14,9 @@ The system has three parts:
 
 1. **HQ (entry point) repository:** Stores stable information about the user,
    machines, projects, and shared instructions. It is where any agent, on any
-   platform, starts reading. Current project status stays elsewhere.
+   platform, starts reading. Current project status stays elsewhere. Because
+   this file can contain identifiers and local paths, make the HQ private by
+   default.
 2. **STATE.md:** Stores current work, next actions, decisions, and blockers in
    each project repository. Update it when project state changes.
 3. **Shared Git remote:** Stores pushed commits. Agents need repository access,
@@ -29,17 +31,23 @@ interview.
 
 Ask conversationally and in batches instead of sending a long questionnaire:
 
-1. **Who are you?** Name, GitHub handle(s), one line on what you do.
+1. **Who are you?** Preferred name or identifier, GitHub handle(s), and one
+   line on what you do. Do not request an email address unless it is
+   operationally necessary.
 2. **Machines.** Which computers do you work from, and where do repos live on
-   each? Agents need valid local paths.
+   each? Agents need valid local paths, but collect only paths they need.
 3. **Projects.** For each active project: name, GitHub repo, local path, one
-   line on what it is. Start with two to five active projects.
+   line on what it is, and whether the repository is public or private. Start
+   with two to five active projects. Explain that a root `STATE.md` in a
+   public repository is public, then confirm the user will keep its contents
+   suitable for that audience before creating it.
 4. **Connections.** Besides GitHub, what does an agent need to touch? (Issue
    tracker, local dashboard, database, deploy target.) For each: how to verify
    it works, where credentials live. Never ask for credential values.
 5. **HQ repo name.** Suggest `hq-entry-point` so the repo's role is visible
    in its own name, and describe it as the "HQ entry point" in the generated
-   files. Ask whether it should use an existing repository or a new one.
+   files. Ask whether it should use an existing repository or a new one. If
+   it is new, recommend a private remote.
 
 If the user has already told you some of this in the conversation, don't
 re-ask it. Confirm inferred details and ask only for missing information.
@@ -73,9 +81,13 @@ status out of HQ, and record the rationale for decisions.
 
 ## Step 3: Wire it up
 
+- Before committing, search the generated files for credential values and
+  unnecessary personal details. Keep credential values out of Git.
 - `git init` if needed, commit everything, and offer to push. If the user has
-  not created the remote repository, walk them through it. Cross-machine
-  handoffs require a shared Git remote or another synchronization method.
+  not created the remote repository, walk them through creating it as
+  **private by default**. Ask before creating the remote or pushing.
+  Cross-machine handoffs require a shared Git remote or another
+  synchronization method.
 - Show the onboarding prompt from the generated README and say exactly what
   it does. Another agent can participate only if it can access the repository
   and follows the onboarding instructions.
