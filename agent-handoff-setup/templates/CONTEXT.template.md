@@ -1,8 +1,12 @@
 # CONTEXT: <your name>
 
+> Keep this repository private by default. Include only the identity,
+> machine, repository, and path details that participating agents need. Never
+> store credentials here.
+
 ## Who
-<Name, GitHub handle(s) + emails, one line on what you do. Keep this section
-to facts an agent needs to understand and work on these projects.>
+<Preferred name or identifier, GitHub handle(s), and one line on what you do.
+Add an email address only if an agent genuinely needs it for the work.>
 
 ## Machines
 - **<machine-name>** - <OS>. Clone roots: `<path where repos live>`.
