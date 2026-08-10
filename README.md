@@ -23,7 +23,9 @@ Agent: The migration is in review. One Windows test is still failing.
 The rejected cache approach is recorded. Next: fix the remaining test.
 ```
 
-![How the system works](assets/rumil-agent-handoff-skill.png)
+[![Animated walkthrough of the handoff flow](assets/agent-handoff-in-motion.gif)](assets/rumil-agent-handoff-skill.png)
+
+Click the animation to open the full-resolution diagram.
 
 ## One public package, private project state
 
