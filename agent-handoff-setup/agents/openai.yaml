@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Handoff Setup"
+  short_description: "Create a private Git-backed handoff system"
+  default_prompt: "Use $agent-handoff-setup to create my private project handoff system."

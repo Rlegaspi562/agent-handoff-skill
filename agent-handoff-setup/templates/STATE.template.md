@@ -1,4 +1,6 @@
 # STATE - <project> (updated YYYY-MM-DD by <agent> @ <machine>)
+> Store continuation context, never credentials, customer data, private
+> conversation transcripts, or raw logs that may contain sensitive values.
 ## Progress
 phase: <idea|build|review|live|paused> | progress estimate: <evidence-based estimate or n/a>
 done: <one-line summary of what the project can do right now>
@@ -17,4 +19,4 @@ rejected: <paths not to repeat and why>
 ## Open questions
 - <anything blocked on the human, or genuinely undecided>
 ## Sync
-last push: YYYY-MM-DD | ok
+last push: <YYYY-MM-DD or never> | <ok, not yet pushed, or FAILED (reason)>

@@ -19,10 +19,12 @@ state.
      from unregistered ground.
    - **Creating a new repository, or inside a repo the HQ registry does not
      list:** this is registration, not just building. Before the first commit,
-     create the repo's `STATE.md` (from `templates/STATE.template.md`), add a
-     registry entry to HQ's `CONTEXT.md` (stable facts only), and add any
-     tool-specific pointer files the user uses (see `PROMPT.template.md`).
-     Then continue with the build.
+     create the repo's `STATE.md` (from the installed sibling skill's
+     `agent-handoff-setup/templates/STATE.template.md`), add a registry entry
+     to HQ's `CONTEXT.md` (stable facts only), and add any tool-specific
+     pointer files the user uses (see
+     `agent-handoff-setup/templates/PROMPT.template.md`). Then continue with
+     the build.
 1. **Sync.** `git pull` in the project repo (and in HQ if you have it
    locally). Report briefly if the pull isn't a fast-forward.
 2. **Verify connections** the session will need, per HQ's `CONNECTIONS.md`.
@@ -38,7 +40,9 @@ state.
    risks re-trying it.
 5. **Missing STATE.md?** Fall back to `git log --oneline -10` + the repo's
    README, say the file is missing, and offer to create one from HQ's
-   `templates/STATE.template.md` at session end.
+   `templates/STATE.template.md` at session end. If HQ does not contain the
+   template, use the installed sibling skill's
+   `agent-handoff-setup/templates/STATE.template.md`.
 6. **Check the Sync line.** If it says FAILED, run `git push` now and report.
 
 ## Work
@@ -63,15 +67,22 @@ the user.
    Open questions / Sync) and target 2 KB. Fold new decisions into
    `decided/tried/rejected`; replace `## Now`; reorder `## Next` so item 1 can
    begin without conversation history.
-3. **Check the handoff.** Reread the file without relying on the current
+3. **Remove sensitive values.** Before saving or committing the handoff, scan
+   it for passwords, API keys, tokens, private keys, cookies, authorization
+   headers, customer data, private conversation transcripts, and raw logs or
+   environment dumps that may contain them. Preserve only the safe context an
+   agent needs, such as the service name, environment-variable name, or secret
+   manager location. If a credential may have been exposed, omit the value and
+   tell the user it may need rotation.
+4. **Check the handoff.** Reread the file without relying on the current
    conversation. Add any path, command, or context needed to begin the first
    next action.
-4. **Commit** as `state: <one-liner>` in the same batch as the session's code
+5. **Commit** as `state: <one-liner>` in the same batch as the session's code
    commits, and **push**. If the push fails, keep the local commit, set the
    Sync line to `last push: <date> | FAILED (<reason>)`, create a second local
    state commit containing that failure record, tell the user, and continue
    with work that does not require the push.
-5. **Merge conflict on STATE.md?** Merge the Next lists, keep the newer Now
+6. **Merge conflict on STATE.md?** Merge the Next lists, keep the newer Now
    and Progress, combine Decisions without duplicates, note the merge under
    `tried:`.
 
