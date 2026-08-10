@@ -4,7 +4,7 @@ phase: live | percent: 100
 done: public package with two validated skills, Codex UI metadata, five reusable templates, cross-platform setup, an explicit security model, private-by-default HQ guidance, and the README diagram
 blocked: none
 ## Now
-Public-readiness PR #8 is merged. The README positions Agent Handoff as a Git-backed continuity layer, separates the public package from each user's private HQ and project state, and documents Claude Code, Codex, Cursor, and generic-agent use. Setup and ongoing handoffs explicitly minimize personal data and redact sensitive values. GitHub recognizes Codex as a contributor.
+Public-readiness release v1.2.0 is published from merged PR #8. The README positions Agent Handoff as a Git-backed continuity layer, separates the public package from each user's private HQ and project state, and documents Claude Code, Codex, Cursor, and generic-agent use. Setup and ongoing handoffs explicitly minimize personal data and redact sensitive values. GitHub recognizes Codex as a contributor.
 ## Next
 1. Share the short problem/how-it-works/link reply in the relevant Reddit discussion
 2. Collect real usage feedback before deciding whether to add optional client-specific enforcement hooks
@@ -16,4 +16,4 @@ rejected: rewriting published Git history for a non-secret repo-name mention - i
 ## Open questions
 - none
 ## Sync
-last push: 2026-07-22 | ok
+last push: 2026-08-10 | ok
