@@ -17,15 +17,15 @@ An agent can continue when it has repository access and follows the handoff
 instructions. This is persistent project context, not automatic model memory.
 
 ```text
-You: Where did I leave off?
+You: Yo Where did I leave off?
 
-Agent: The migration is in review. One Windows test is still failing.
-The rejected cache approach is recorded. Next: fix the remaining test.
+Agent: Your cat project is in progress. You were working on the UI.
+Next: fix the remaining test.
 ```
 
-[![Animated walkthrough of the handoff flow](assets/agent-handoff-in-motion.gif)](assets/rumil-agent-handoff-skill.png)
+[![Animated walkthrough of the handoff flow](assets/rumil-agent-handoff-skill.png)
 
-Click the animation to open the full-resolution diagram.
+## Explanation of skill here https://www.youtube.com/watch?v=RaijUcS2z1A&t=332s
 
 ## One public package, private project state
 
